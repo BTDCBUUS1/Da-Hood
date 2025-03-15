@@ -284,14 +284,15 @@ local function updateEsp()
                         esp.healthOutline.Visible = false
                         esp.health.Visible = false
                     end
-
+                    
                     if ESP_SETTINGS.ShowArmor and ESP_SETTINGS.Enabled then
                         esp.armorOutline.Visible = true
                         esp.armor.Visible = true
                         local armorPercentage = 100
-                        esp.armorOutline.From = Vector2.new(boxPosition.X - 6, boxPosition.Y + boxSize.Y + 5)  -- Adjusted Y position
+                        -- Move armor to the left of health bar by changing the X value
+                        esp.armorOutline.From = Vector2.new(boxPosition.X - 6 - boxSize.X - 5, boxPosition.Y + boxSize.Y + 5)  -- Adjusted X position to the left
                         esp.armorOutline.To = Vector2.new(esp.armorOutline.From.X, esp.armorOutline.From.Y - boxSize.Y)
-                        esp.armor.From = Vector2.new((boxPosition.X - 5), boxPosition.Y + boxSize.Y + 5)  -- Adjusted Y position
+                        esp.armor.From = Vector2.new((boxPosition.X - 5 - boxSize.X - 5), boxPosition.Y + boxSize.Y + 5)  -- Adjusted X position to the left
                         esp.armor.To = Vector2.new(esp.armor.From.X, esp.armor.From.Y - (armorPercentage) * boxSize.Y)
                         esp.armor.Color = Color3.fromRGB(0, 0, 255)  -- Armor color (blue)
                     else
