@@ -289,17 +289,17 @@ local function updateEsp()
                         esp.armorOutline.Visible = true
                         esp.armor.Visible = true
                         local armorPercentage = 100
-                        -- Use a small offset (try -8 or a similar small value)
-                        esp.armorOutline.From = Vector2.new(boxPosition.X - 8, boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -8
-                        esp.armorOutline.To = Vector2.new(esp.armorOutline.From.X, esp.armorOutline.From.Y - boxSize.Y)
-                        esp.armor.From = Vector2.new((boxPosition.X - 8), boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -8
-                        esp.armor.To = Vector2.new(esp.armor.From.X, esp.armor.From.Y - (armorPercentage) * boxSize.Y)
+                        -- Adjust Y position for the armor to be properly aligned with health bar
+                        -- Use a small offset of -8 or similar for X, keep Y position close to health
+                        esp.armorOutline.From = Vector2.new(boxPosition.X - 8, boxPosition.Y + boxSize.Y)  -- X is offset, Y matches health bar
+                        esp.armorOutline.To = Vector2.new(esp.armorOutline.From.X, esp.armorOutline.From.Y - boxSize.Y)  -- Same Y, adjusting for height
+                        esp.armor.From = Vector2.new((boxPosition.X - 8), boxPosition.Y + boxSize.Y)  -- X is offset, Y aligns with health bar
+                        esp.armor.To = Vector2.new(esp.armor.From.X, esp.armor.From.Y - (armorPercentage) * boxSize.Y)  -- Align the height properly
                         esp.armor.Color = Color3.fromRGB(0, 0, 255)  -- Armor color (blue)
                     else
                         esp.armorOutline.Visible = false
                         esp.armor.Visible = false
                     end
-                    
                     
 
                     if ESP_SETTINGS.ShowDistance and ESP_SETTINGS.Enabled then
@@ -433,6 +433,6 @@ end)
 
 RunService.RenderStepped:Connect(updateEsp)
 
-print("UPDATED")
+print("UPDATED v2")
 
 return ESP_SETTINGS
