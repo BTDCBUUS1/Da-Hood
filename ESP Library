@@ -289,16 +289,17 @@ local function updateEsp()
                         esp.armorOutline.Visible = true
                         esp.armor.Visible = true
                         local armorPercentage = 100
-                        -- Move armor to the left of health bar by changing the X value
-                        esp.armorOutline.From = Vector2.new(boxPosition.X - 6 - boxSize.X - 5, boxPosition.Y + boxSize.Y + 5)  -- Adjusted X position to the left
+                        -- Adjusted X position to place armor just to the left of health bar (smaller offset)
+                        esp.armorOutline.From = Vector2.new(boxPosition.X - 6 - 15, boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -15 instead of -boxSize.X
                         esp.armorOutline.To = Vector2.new(esp.armorOutline.From.X, esp.armorOutline.From.Y - boxSize.Y)
-                        esp.armor.From = Vector2.new((boxPosition.X - 5 - boxSize.X - 5), boxPosition.Y + boxSize.Y + 5)  -- Adjusted X position to the left
+                        esp.armor.From = Vector2.new((boxPosition.X - 5 - 15), boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -15 instead of -boxSize.X
                         esp.armor.To = Vector2.new(esp.armor.From.X, esp.armor.From.Y - (armorPercentage) * boxSize.Y)
                         esp.armor.Color = Color3.fromRGB(0, 0, 255)  -- Armor color (blue)
                     else
                         esp.armorOutline.Visible = false
                         esp.armor.Visible = false
                     end
+                    
 
                     if ESP_SETTINGS.ShowDistance and ESP_SETTINGS.Enabled then
                         local distance = (camera.CFrame.p - rootPart.Position).Magnitude
