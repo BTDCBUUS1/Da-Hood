@@ -289,16 +289,17 @@ local function updateEsp()
                         esp.armorOutline.Visible = true
                         esp.armor.Visible = true
                         local armorPercentage = 100
-                        -- Adjusted X position to place armor just to the left of health bar (smaller offset)
-                        esp.armorOutline.From = Vector2.new(boxPosition.X - 6 - 15, boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -15 instead of -boxSize.X
+                        -- Use a small offset (try -8 or a similar small value)
+                        esp.armorOutline.From = Vector2.new(boxPosition.X - 8, boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -8
                         esp.armorOutline.To = Vector2.new(esp.armorOutline.From.X, esp.armorOutline.From.Y - boxSize.Y)
-                        esp.armor.From = Vector2.new((boxPosition.X - 5 - 15), boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -15 instead of -boxSize.X
+                        esp.armor.From = Vector2.new((boxPosition.X - 8), boxPosition.Y + boxSize.Y + 5)  -- Adjust X by -8
                         esp.armor.To = Vector2.new(esp.armor.From.X, esp.armor.From.Y - (armorPercentage) * boxSize.Y)
                         esp.armor.Color = Color3.fromRGB(0, 0, 255)  -- Armor color (blue)
                     else
                         esp.armorOutline.Visible = false
                         esp.armor.Visible = false
                     end
+                    
                     
 
                     if ESP_SETTINGS.ShowDistance and ESP_SETTINGS.Enabled then
@@ -431,4 +432,7 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 
 RunService.RenderStepped:Connect(updateEsp)
+
+print("UPDATED")
+
 return ESP_SETTINGS
